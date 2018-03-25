@@ -30,7 +30,15 @@ class CounterApp extends Component {
       allValues: values
     })
   }
-  
+
+  reset = (i) => {
+    const values = this.state.allValues.slice();
+    values[i] = 0;
+    this.setState({
+      allValues: values
+    })
+  }
+
   render() {
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
@@ -43,6 +51,7 @@ class CounterApp extends Component {
           />
           <button onClick={() => this.increment(index)}> + </button>
           <button onClick={() => this.decrement(index)}> - </button>
+          <button onClick={() => this.reset(index)}> reset </button>
       </div>
       )
     })
