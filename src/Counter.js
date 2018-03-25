@@ -6,10 +6,8 @@ const Counter = (props) => {
   return (
     <div>
       <h3>Counter {props.name}</h3>
-      <h3>{props.counterValue}</h3>
-      <button onClick={props.increment}>+</button>
-      <button onClick={props.decrement}>-</button>
-      <button onClick={props.reset}>Reset</button>
+      <h3>Val: {props.value}</h3>
+
     </div>
   );
 };
