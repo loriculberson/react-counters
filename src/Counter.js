@@ -6,8 +6,6 @@ const Counter = (props) => {
     <div>
       <h3>Counter {props.name}</h3>
       <h3>Val: {props.value}</h3>
-      
-
     </div>
   );
 };

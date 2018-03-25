@@ -9,7 +9,6 @@ class CounterApp extends Component {
       allValues: [0, 5]
     }
   }
-
   
   counterValue = (i) => {
     //display what is in state for that index
@@ -19,6 +18,14 @@ class CounterApp extends Component {
   increment = (i) => {
     const values = this.state.allValues.slice();
     values[i] = this.state.allValues[i] + 1;
+    this.setState({
+      allValues: values
+    })
+  }
+  
+  decrement = (i) => {
+    const values = this.state.allValues.slice();
+    values[i] = this.state.allValues[i] - 1;
     this.setState({
       allValues: values
     })
@@ -35,6 +42,7 @@ class CounterApp extends Component {
             value={this.counterValue(index)}
           />
           <button onClick={() => this.increment(index)}> + </button>
+          <button onClick={() => this.decrement(index)}> - </button>
       </div>
       )
     })
