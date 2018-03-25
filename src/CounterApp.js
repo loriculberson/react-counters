@@ -5,15 +5,18 @@ class CounterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allValues: [0, 5]
+      allValues: [0]
     }
   }
   
   counterValue = (i) => {
     //display what is in state for that index
+    //QUESTION: Why with an arrow function does this value have to be returned? 
+    //Without it, the individual counter value does not appear.
     return this.state.allValues[i];
   }
 
+  //QUESTION: How can these functions be refactored? Lots of repeated code. 
   increment = (i) => {
     const values = this.state.allValues.slice();
     values[i] = this.state.allValues[i] + 1;
@@ -63,7 +66,9 @@ class CounterApp extends Component {
       </div>
       )
     })
-    
+
+    //QUESTION:
+    //What's the rule for onClick functions -- when you preface it with ()=> and when you do not.
     return (
       <div>
         <div>
