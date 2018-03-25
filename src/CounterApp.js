@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Counter from './Counter';
 
 class CounterApp extends Component {
-  //state here 
   constructor(props) {
     super(props);
     this.state = {
@@ -39,11 +38,20 @@ class CounterApp extends Component {
     })
   }
 
+  newCounter = () => {
+    //push a 0 value into the allValues array
+    const values = this.state.allValues.slice();
+    values.push(0)
+    this.setState({
+      allValues: values
+    })
+  }
+
   render() {
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
       return (
-        <div>
+        <div className="counter">
           <Counter
             key={index}
             name={index + 1}
@@ -55,12 +63,13 @@ class CounterApp extends Component {
       </div>
       )
     })
-
+    
     return (
       <div>
         <div>
           {renderCounters}
           <h2>Total: {total}</h2>
+          <button onClick={this.newCounter} className="add-counter"> add new counter </button>
         </div>
       </div>
     );
