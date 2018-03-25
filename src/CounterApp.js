@@ -6,7 +6,7 @@ class CounterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allValues: [3, 1]
+      allValues: [0, 5]
     }
   }
 
@@ -16,16 +16,26 @@ class CounterApp extends Component {
     return this.state.allValues[i];
   }
 
+  increment = (i) => {
+    const values = this.state.allValues.slice();
+    values[i] = this.state.allValues[i] + 1;
+    this.setState({
+      allValues: values
+    })
+  }
   
   render() {
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
       return (
-        <Counter
-        name={index + 1}
-        key={index}
-        value={this.counterValue(index)}
-      />
+        <div>
+          <Counter
+            key={index}
+            name={index + 1}
+            value={this.counterValue(index)}
+          />
+          <button onClick={() => this.increment(index)}> + </button>
+      </div>
       )
     })
 
