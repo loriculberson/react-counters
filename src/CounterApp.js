@@ -43,11 +43,14 @@ class CounterApp extends Component {
 
   newCounter = () => {
     //push a 0 value into the allValues array
-    const values = this.state.allValues.slice();
-    values.push(0)
-    this.setState({
-      allValues: values
-    })
+    this.setState({ allValues: [...this.state.allValues, 0] })
+
+    //ALTERNATIVE
+    // const values = this.state.allValues.slice();
+    // values.push(0)
+    // this.setState({
+    //   allValues: values
+    // })
   }
 
   render() {
