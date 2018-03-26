@@ -14,9 +14,18 @@ class CounterApp extends Component {
     //QUESTION: Why with an arrow function does this value have to be returned? 
     //Without it, the individual counter value does not appear.
     return this.state.allValues[i];
+    // Answer: if you use () instead of {}, no return is needed
   }
 
   //QUESTION: How can these functions be refactored? Lots of repeated code. 
+  //Do not have to refactor this. Too unreadable.
+  // increment = (i) => {
+  //   const values = this.state.allValues.slice();
+  //   values[i] = this.state.allValues[i] + 1;
+  //   this.setState({
+  //     allValues: values
+  //   })
+  // }
   increment = (i) => {
     const values = this.state.allValues.slice();
     values[i] = this.state.allValues[i] + 1;
@@ -72,25 +81,34 @@ class CounterApp extends Component {
   }
 
   render() {
+
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
       return (
         <div key={index} className="counter">
           <Counter
             key={index}
+            index={index}
             name={index + 1}
             value={this.counterValue(index)}
+            increment={this.increment}
+            decrement={this.decrement}
+            reset={this.reset}
+            deleteCounter={this.deleteCounter}
           />
-          <button onClick={() => this.increment(index)}> + </button>
-          <button onClick={() => this.decrement(index)}> - </button>
-          <button onClick={() => this.reset(index)}> reset </button>
-          <button onClick={() => this.deleteCounter(index)}> delete </button>
+        {/* USe an arrow function to control what gets passes as an argument. You do not need the event as an argument.
+        When you click, the arrow function gets executed.
+        You need the index and not the event
+         */}
+
       </div>
       )
     })
 
     //QUESTION:
     //What's the rule for onClick functions -- when you preface it with ()=> and when you do not.
+    // You do not need the event or an argument here.
+    // Assign a function expression to onClick. onClick expects a function.
     return (
       <div>
         <div>
@@ -99,7 +117,7 @@ class CounterApp extends Component {
           <div>
             <button onClick={this.newCounter} className="add-counter"> add new counter </button>
             <button onClick={this.resetAll} className="reset-all"> reset all </button>
-          </div>
+          </div> 
         </div>
       </div>
     );
