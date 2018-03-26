@@ -3,7 +3,7 @@ button {
   height: 20 px;
 }
 
-.add-counter {
+.reset-all, .add-counter {
   width: 80px;
+  height: 50px;
 }
-

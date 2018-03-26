@@ -53,6 +53,12 @@ class CounterApp extends Component {
     // })
   }
 
+  resetAll = () => {
+    //replace the value of each counter to be 0
+    const resetValues = this.state.allValues.map(counter => counter = 0 )
+    this.setState({ allValues: resetValues })
+  }
+
   render() {
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
@@ -77,7 +83,10 @@ class CounterApp extends Component {
         <div>
           {renderCounters}
           <h2>Total: {total}</h2>
-          <button onClick={this.newCounter} className="add-counter"> add new counter </button>
+          <div>
+            <button onClick={this.newCounter} className="add-counter"> add new counter </button>
+            <button onClick={this.resetAll} className="reset-all"> reset all </button>
+          </div>
         </div>
       </div>
     );
