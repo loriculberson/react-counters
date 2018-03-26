@@ -1,6 +1,7 @@
 button {
-  width: 40px;
-  height: 20 px;
+  width: 70px;
+  height: 40 px;
+  font-size: 1.5 em;
 }
 
 .reset-all, .add-counter {
