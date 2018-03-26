@@ -75,7 +75,7 @@ class CounterApp extends Component {
     const total = this.state.allValues.reduce((sum, num) => sum + num)
     const renderCounters = this.state.allValues.map((counter, index) => {
       return (
-        <div className="counter">
+        <div key={index} className="counter">
           <Counter
             key={index}
             name={index + 1}
