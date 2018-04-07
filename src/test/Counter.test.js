@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Counter from '../Counter';
-import CounterApp from '../CounterApp';
 
 describe('Counter Component', () => {
 
@@ -10,7 +9,7 @@ describe('Counter Component', () => {
       name: 1
     };
 
-    const wrapper = mount(<Counter {...props} />)
+    const wrapper = shallow(<Counter {...props} />)
     const counterOne= wrapper.find('.counter-name').first()
     const counterName = counterOne.text()
 
@@ -24,7 +23,7 @@ describe('Counter Component', () => {
       increment: jest.fn()
     };
 
-    const wrapper = mount(<Counter {...props} />)
+    const wrapper = shallow(<Counter {...props} />)
     const incrementButton = wrapper.find('.increment')
     incrementButton.simulate('click')
 

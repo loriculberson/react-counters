@@ -1,4 +1,5 @@
 // in app/src/setupTests.js file
+import 'jest-enzyme';
 const Enzyme = require('enzyme');
 // this is where we reference the adapter package we installed  
 // earlier
