@@ -8,7 +8,7 @@ const Counter = (props) => {
       <h3 className="counter-value">Val: {props.value}</h3>
       <button className="increment" onClick={() => props.increment(props.index)}> + </button>
       <button className="decrement" onClick={() => props.decrement(props.index)}> - </button>
-      <button onClick={() => props.reset(props.index)}> reset </button>
+      <button className="reset" onClick={() => props.reset(props.index)}> reset </button>
       <button className="delete-counter" onClick={() => props.deleteCounter(props.index)}> delete </button>
     </div>
   );
