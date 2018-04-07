@@ -41,9 +41,49 @@ describe('CounterApp Component', () => {
     counter = wrapper.find(Counter)
     expect(counter.length).toBe(2)
   })
-  //test the increment function causes Counter value to increase
+
+  it('deletes Counters', () => {
+    const wrapper = mount(<CounterApp />)
+    let counter = wrapper.find(Counter)
+
+    expect(counter.length).toBe(1)
+    
+    const addCounterButton = wrapper.find('.add-counter')
+    addCounterButton.simulate('click')
+    
+    counter = wrapper.find(Counter)
+    expect(counter.length).toBe(2)
+    
+    const deleteCounterButton = wrapper.find(".delete-counter").last()
+    deleteCounterButton.simulate('click')
+    
+    counter = wrapper.find(Counter)
+    expect(counter.length).toBe(1)
+  })
+
   //test the increment function causes the Total of all counters to increase
-  //add counter increases the number of counters by 1
-  //delete counter decreases the number of counters by 1
+
+  it('displays the sum of all counters', () => {
+    const wrapper = mount(<CounterApp />)
+    let counter = wrapper.find(Counter)
+    const incrementButton = counter.first().find('.increment')
+    incrementButton.simulate('click')
+    incrementButton.simulate('click')
+    incrementButton.simulate('click')
+    
+    const addCounterButton = wrapper.find('.add-counter')
+    addCounterButton.simulate('click')
+    
+    counter = wrapper.find(Counter)
+
+    const incrementButton2 = counter.last().find('.increment')
+    incrementButton2.simulate('click')
+    incrementButton2.simulate('click')
+
+    const counterTotal = wrapper.find('.counter-total')
+    const counterTotalText = counterTotal.text()
+
+    expect(counterTotalText).toBe('Total: 5')
+  })
 })
 

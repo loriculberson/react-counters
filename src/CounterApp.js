@@ -102,7 +102,7 @@ class CounterApp extends Component {
       <div>
         <div>
           {renderCounters}
-          <h2>Total: {total}</h2>
+          <h2 className="counter-total">Total: {total}</h2>
           <div>
             <button onClick={this.newCounter} className="add-counter"> add new counter </button>
             <button onClick={this.resetAll} className="reset-all"> reset all </button>
