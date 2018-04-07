@@ -5,32 +5,17 @@ import CounterApp from '../CounterApp';
 
 describe('Counter Component', () => {
 
-  
-  // it('should render without throwing an error', () => {
-  //   expect(shallow(<Counter />).exists(<div className='counter'></div>)).toBe(true)
-  // })
-  
-  // it('renders a name', () => {
-  //   expect(shallow(<Counter />).find('.counter-name').length).toEqual(1)
-  // })
+  it('has a name', () => {
+    const props = {
+      name: 1
+    };
 
-  // it('renders a value', () => {
-  //   expect(shallow(<Counter />).find('.counter-value').length).toEqual(1)
-  //  })
-  
-    // test('shallow wrapper instance should not be null', () => {
-    //   const wrapper = shallow(<Counter {...props} />);
-    //   const instance = wrapper.instance();
+    const wrapper = mount(<Counter {...props} />)
+    const counterOne= wrapper.find('.counter-name').first()
+    const counterName = counterOne.text()
 
-    //     expect(instance).not.toBe(null);
-    // });
-
-  // it('starts with a count of 0', () => {
-  //   const wrapper = shallow(<Counter />)
-  //   const text = wrapper.find('.counter-value').text()
-  //   expect(text).toEqual('Val: 0')
-  //   // expect(wrapper.props().alerts).toEqual([]);
-  // })
+    expect(counterName).toBe(`Counter 1`)
+  })
 
   it('can increment the count when the button is clicked', () => {
     const props = {
@@ -42,6 +27,7 @@ describe('Counter Component', () => {
     const wrapper = mount(<Counter {...props} />)
     const incrementButton = wrapper.find('.increment')
     incrementButton.simulate('click')
+
     expect(props.increment).toHaveBeenCalledWith(props.index)
   })
 

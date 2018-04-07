@@ -15,18 +15,3 @@ const Counter = (props) => {
 };
 
 export default Counter;
-
-// describe('Button component', () => {
-//   const props = {
-//     onClick: jest.fn(),
-//   };
-
-//   test('should call onClick method from props if onClick was fired', () => {
-//     const wrapper = shallow(<Button {...props}>Click on me</Button>);
-//     const instance = wrapper.instance(); // null
-
-//     // triger click
-
-//     expect(instance.props.onClick).toHaveBeenCalled() // error, because null has not props property
-//   });
-// });
