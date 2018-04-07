@@ -29,6 +29,41 @@ describe('CounterApp Component', () => {
     expect(counter).toHaveProp({ value: 3})
   })
 
+  it('decreases the value when Counter decrement button is clicked', () => {
+    const wrapper = mount(<CounterApp />)
+    let counter = wrapper.find(Counter)
+
+    const decrementButton = counter.find('.decrement')
+    decrementButton.simulate('click')
+    counter = wrapper.find(Counter)
+    
+    expect(counter).toHaveProp({ value: -1})
+    
+    decrementButton.simulate('click')
+    decrementButton.simulate('click')
+    
+    counter = wrapper.find(Counter)
+    expect(counter).toHaveProp({ value: -3})
+  })
+
+  it('resets the value of a single Counter to zero', () => {
+    const wrapper = mount(<CounterApp />)
+    let counter = wrapper.find(Counter)
+
+    const incrementButton = counter.find('.increment')
+    incrementButton.simulate('click')
+    incrementButton.simulate('click')
+
+    counter = wrapper.find(Counter)
+    expect(counter).toHaveProp({ value: 2})
+
+    const resetButton = counter.find('.reset')
+    resetButton.simulate('click')
+    counter = wrapper.find(Counter)
+    
+    expect(counter).toHaveProp({ value: 0})
+  })
+
   it('initializes multiple Counters', () => {
     const wrapper = mount(<CounterApp />)
     let counter = wrapper.find(Counter)
@@ -61,7 +96,6 @@ describe('CounterApp Component', () => {
     expect(counter.length).toBe(1)
   })
 
-  //test the increment function causes the Total of all counters to increase
 
   it('displays the sum of all counters', () => {
     const wrapper = mount(<CounterApp />)
