@@ -27,7 +27,19 @@ describe('CounterApp Component', () => {
     
     counter = wrapper.find(Counter)
     expect(counter).toHaveProp({ value: 3})
+  })
 
+  it('initializes multiple Counters', () => {
+    const wrapper = mount(<CounterApp />)
+    let counter = wrapper.find(Counter)
+    
+    expect(counter.length).toBe(1)
+    
+    const addCounterButton = wrapper.find('.add-counter')
+    addCounterButton.simulate('click')
+    
+    counter = wrapper.find(Counter)
+    expect(counter.length).toBe(2)
   })
   //test the increment function causes Counter value to increase
   //test the increment function causes the Total of all counters to increase
