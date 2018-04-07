@@ -9,23 +9,12 @@ class CounterApp extends Component {
     }
   }
   
-  counterValue = (i) => {
+  counterValue = (i) => (
     //display what is in state for that index
-    //QUESTION: Why with an arrow function does this value have to be returned? 
-    //Without it, the individual counter value does not appear.
-    return this.state.allValues[i];
+     this.state.allValues[i]
     // Answer: if you use () instead of {}, no return is needed
-  }
+  )
 
-  //QUESTION: How can these functions be refactored? Lots of repeated code. 
-  //Do not have to refactor this. Too unreadable.
-  // increment = (i) => {
-  //   const values = this.state.allValues.slice();
-  //   values[i] = this.state.allValues[i] + 1;
-  //   this.setState({
-  //     allValues: values
-  //   })
-  // }
   increment = (i) => {
     const values = this.state.allValues.slice();
     values[i] = this.state.allValues[i] + 1;
