@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Counter from '../Counter';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 describe('Counter Component', () => {
   it('displays its name', () => {

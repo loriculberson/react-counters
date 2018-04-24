@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class CounterApp extends Component {
   constructor(props) {
@@ -104,8 +105,8 @@ class CounterApp extends Component {
           {renderCounters}
           <h2 className="counter-total">Total: {total}</h2>
           <div>
-            <button onClick={this.newCounter} className="add-counter"> add new counter </button>
-            <button onClick={this.resetAll} className="reset-all"> reset all </button>
+            <RaisedButton name="new-counter" label="add new counter" primary={true} onClick={this.newCounter} className="add-new-counter" />
+            <RaisedButton name="reset all" label="reset all" secondary={true} onClick={this.resetAll} className="reset-all" />
           </div> 
         </div>
       </div>
