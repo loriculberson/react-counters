@@ -58,7 +58,6 @@ describe('CounterApp Component', () => {
   })
 
   it('resets the value of a single Counter to zero', () => {
-    // const wrapper = mount(<CounterApp />)
     const wrapper = counterAppWrapped()
     let counter = wrapper.find(Counter)
 
@@ -135,6 +134,62 @@ describe('CounterApp Component', () => {
     const counterTotalText = counterTotal.text()
 
     expect(counterTotalText).toBe('Total: 5')
+  })
+
+  it('resets all counters to zero', () => {
+    const wrapper = counterAppWrapped()
+
+    const addCounterButton = wrapper.find('EnhancedButton')
+      .filterWhere(button => button.instance().props.name === "new-counter")
+    addCounterButton.simulate('click')
+    addCounterButton.simulate('click')
+
+    let counter01 = wrapper.find(Counter).at(0)
+    let counter02 = wrapper.find(Counter).at(1)
+    let counter03 = wrapper.find(Counter).at(2)
+    
+    expect(counter01).toHaveProp({ value: 0})
+    expect(counter02).toHaveProp({ value: 0})
+    expect(counter03).toHaveProp({ value: 0})
+    
+    //click counter1,2,3 increment button
+    counter01.find('.increment').simulate('click')
+
+    counter02.find('.increment').simulate('click')
+    counter02.find('.increment').simulate('click')
+
+    counter03.find('.increment').simulate('click')
+    counter03.find('.increment').simulate('click')
+    counter03.find('.increment').simulate('click')
+
+    counter01 = wrapper.find(Counter).at(0)
+    counter02 = wrapper.find(Counter).at(1)
+    counter03 = wrapper.find(Counter).at(2)
+
+    expect(counter01).toHaveProp({ value: 1})
+    expect(counter02).toHaveProp({ value: 2})
+    expect(counter03).toHaveProp({ value: 3})
+
+    
+    let counterTotal = wrapper.find('.counter-total')
+    let counterTotalText = counterTotal.text()
+    expect(counterTotalText).toBe('Total: 6')
+
+    
+    const resetAllButton = wrapper.find('EnhancedButton')
+    .filterWhere(button => button.instance().props.name === "reset all")
+    resetAllButton.simulate('click')
+
+    counter01 = wrapper.find(Counter).at(0)
+    counter02 = wrapper.find(Counter).at(1)
+    counter03 = wrapper.find(Counter).at(2)
+
+    expect(counter01).toHaveProp({ value: 0})
+    expect(counter02).toHaveProp({ value: 0})
+    expect(counter03).toHaveProp({ value: 0})
+
+    counterTotalText = counterTotal.text()
+    expect(counterTotalText).toBe('Total: 0')
   })
 })
 
