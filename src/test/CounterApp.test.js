@@ -119,5 +119,42 @@ describe('CounterApp Component', () => {
 
     expect(counterTotalText).toBe('Total: 5')
   })
+
+  it('resets all counters to zero', () => {
+    const wrapper = mount(<CounterApp />)
+    let addCounterButton = wrapper.find('.add-counter')
+    addCounterButton.simulate('click')
+    addCounterButton.simulate('click')
+
+    let counter01 = wrapper.find(Counter).at(0)
+    let counter02 = wrapper.find(Counter).at(1)
+    let counter03 = wrapper.find(Counter).at(2)
+    
+    counter01.find('.increment').simulate('click')
+    counter02.find('.increment').simulate('click')
+    counter02.find('.increment').simulate('click')
+    counter03.find('.increment').simulate('click')
+    counter03.find('.increment').simulate('click')
+    counter03.find('.increment').simulate('click')
+
+    counter01 = wrapper.find(Counter).at(0)
+    counter02 = wrapper.find(Counter).at(1)
+    counter03 = wrapper.find(Counter).at(2)
+
+    expect(counter01).toHaveProp({ value: 1})
+    expect(counter02).toHaveProp({ value: 2})
+    expect(counter03).toHaveProp({ value: 3})
+
+    let resetAllButton = wrapper.find('.reset-all')
+    resetAllButton.simulate('click')
+
+    counter01 = wrapper.find(Counter).at(0)
+    counter02 = wrapper.find(Counter).at(1)
+    counter03 = wrapper.find(Counter).at(2)
+
+    expect(counter01).toHaveProp({ value: 0})
+    expect(counter02).toHaveProp({ value: 0})
+    expect(counter03).toHaveProp({ value: 0})
+  })
 })
 
