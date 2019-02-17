@@ -6,7 +6,7 @@
 
 - Total of all counters appears at app bottom.
 
-- Skills: 
+#### Skills: 
 * using stateful and stateless components
 
 * testing with Jest and Enzyme 
